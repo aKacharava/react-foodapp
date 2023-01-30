@@ -14,6 +14,7 @@ const cartReducer = function(state, action) {
     const existingCartItem = state.items[existingCartItemIndex];
     let updatedItems;
     
+    /// This is needed to prevent adding the same existing item multiple times
     if(existingCartItem) {
       const updatedItem = {
         ...existingCartItem,
@@ -40,6 +41,7 @@ const cartReducer = function(state, action) {
     const updatedTotalAmount = state.totalAmount - existingCartItem.price;
     let updatedItems;
 
+    /// Here we check if the item has an amount of 1, then we delete the item from the array
     if(existingCartItem.amount === 1) {
       updatedItems = state.items.filter(item => item.id !== action.id);
     } else {
